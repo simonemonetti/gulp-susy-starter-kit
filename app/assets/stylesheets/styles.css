@@ -375,33 +375,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-.testing {
-  width: 100%;
-  float: left;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.testing2 {
-  width: 15.25424%;
-  float: left;
-  margin-right: 1.69492%;
-  margin-left: 32.20339%;
-}
-
-.testing3 {
-  width: 15.25424%;
-  float: left;
-  margin-right: 1.69492%;
-  margin-left: 49.15254%;
-  color: black;
-}
-@media (min-width: 20em) {
-  .testing3 {
-    width: 32.20339%;
-    float: left;
-    margin-right: 1.69492%;
-    margin-left: 23.72881%;
-  }
-}

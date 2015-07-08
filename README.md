@@ -31,7 +31,7 @@ Use the `gulp` command to start the process.
 $ gulp
 ~~~
 
-## Create font from .svg icons
+## Create font from .svg icons / based on [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont)
 
 1. Place your .svg icons in app/assets/icons
 
