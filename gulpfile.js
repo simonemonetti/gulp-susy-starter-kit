@@ -6,7 +6,6 @@ var connect = require('gulp-connect');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 var consolidate = require('gulp-consolidate');
-// var reload = require('gulp-server-livereload');
 
 // Compass (with Sourcemaps and CSS Minifier)
 gulp.task('compass', function() {
