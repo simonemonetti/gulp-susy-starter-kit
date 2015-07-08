@@ -35,7 +35,7 @@ $ gulp
 
 1. Place your .svg icons in app/assets/icons
 
-2. Run
+2. Run gulp task
 
 ~~~
 $ gulp fonts
