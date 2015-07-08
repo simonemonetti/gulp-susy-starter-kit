@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Gulp Susy Starter 
 
 Starter kit with: Gulp.js / Susy / Compass / svg-to-font (iconfont) / server
@@ -31,3 +32,7 @@ $ gulp
 ~~~
 
 That's it!
+=======
+# gulp-susy-starter-kit
+Gulp + Bower + Compass
+>>>>>>> 5ef51598717a543a94fd8890849cc31ed956510c
