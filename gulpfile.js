@@ -56,7 +56,6 @@ gulp.task('connect', function() {
 gulp.task('watch', function() {
   gulp.watch('./app/assets/icons/*.svg', ['Iconfont']);
   gulp.watch('./app/assets/scss/*.scss', ['compass']);
-	//.pipe(connect.reload());
 });
 
 gulp.task('fonts', ['Iconfont']);
