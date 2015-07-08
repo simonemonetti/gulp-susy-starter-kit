@@ -5,3 +5,5 @@ $susy: (
   global-box-sizing: border-box,
   debug: (image: show-columns)
 );
+
+@include border-box-sizing;
