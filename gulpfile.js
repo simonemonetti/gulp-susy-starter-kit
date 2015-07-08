@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var compass = require('gulp-compass'),
     minifyCSS = require('gulp-minify-css');
-var sourcemaps = require('gulp-sourcemaps'); 
+var sourcemaps = require('gulp-sourcemaps');
 var connect = require('gulp-connect');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
@@ -13,11 +13,11 @@ gulp.task('compass', function() {
     .pipe(sourcemaps.init())
     .pipe(compass({
       config_file: './config.rb',
-      css: 'app/assets/stylesheets',
+      css: 'app/assets/css',
       sass: 'app/assets/scss'
     }))
     .on('error', function(error) {
-      // Would like to catch the error here 
+      // Would like to catch the error here
       console.log(error);
       this.emit('end');
     })
@@ -47,7 +47,7 @@ gulp.task('Iconfont', function(){
 gulp.task('connect', function() {
 	connect.server({
     root: 'app',
-		port: 8080, 
+		port: 8080,
 		livereload: true
 	});
 });
