@@ -1,8 +1,8 @@
 {
   "name": "gulp-susy-starter",
-  "version": "0.0.0",
+  "version": "0.1",
   "authors": [
-    "Zell Liew <zellwk@gmail.com>"
+    "Simone Monetti <simone.monetti@gmail.com>"  
   ],
   "license": "MIT",
   "ignore": [

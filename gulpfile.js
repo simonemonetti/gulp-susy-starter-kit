@@ -1,25 +1,64 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
+var compass = require('gulp-compass'),
+    minifyCSS = require('gulp-minify-css');
+var sourcemaps = require('gulp-sourcemaps'); 
+var connect = require('gulp-connect');
+var iconfont = require('gulp-iconfont');
+var iconfontCss = require('gulp-iconfont-css');
+var consolidate = require('gulp-consolidate');
+// var reload = require('gulp-server-livereload');
 
-// Gulp Sass Task 
-gulp.task('sass', function() {
-  gulp.src('./scss/{,*/}*.{scss,sass}')
+// Compass (with Sourcemaps and CSS Minifier)
+gulp.task('compass', function() {
+  gulp.src('./app/assets/scss/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass({
-      errLogToConsole: true
+    .pipe(compass({
+      config_file: './config.rb',
+      css: 'app/assets/stylesheets',
+      sass: 'app/assets/scss'
     }))
+    .on('error', function(error) {
+      // Would like to catch the error here 
+      console.log(error);
+      this.emit('end');
+    })
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./css'));
-})
-
-// Create Gulp Default Task
-// ------------------------
-// Having watch within the task ensures that 'sass' has already ran before watching
-// 
-// This setup is slightly different from the one on the blog post at
-// http://www.zell-weekeat.com/gulp-libsass-with-susy/#comment-1910185635
-gulp.task('default', ['sass'], function () {
-  gulp.watch('./scss/{,*/}*.{scss,sass}', ['sass'])
+    .pipe(minifyCSS())
+    .pipe(gulp.dest('app/assets/css'));
 });
 
+// Iconfont
+gulp.task('Iconfont', function(){
+  gulp.src(['./app/assets/icons/*.svg'])
+    .pipe(iconfontCss({
+      fontName: 'myFont',
+      path: 'scss',
+      targetPath: '../scss/_icons.scss',
+      fontPath: '../fonts/'
+    }))
+    .pipe(iconfont({
+      fontName: 'myFont',
+      //appendUnicode: true, // recommended option
+      normalize: true
+     }))
+    .pipe(gulp.dest('app/assets/fonts/'));
+});
+
+// Connect
+gulp.task('connect', function() {
+	connect.server({
+    root: 'app',
+		port: 8080, 
+		livereload: true
+	});
+});
+
+gulp.task('watch', function() {
+  gulp.watch('./app/assets/icons/*.svg', ['Iconfont']);
+  gulp.watch('./app/assets/scss/*.scss', ['compass']);
+	//.pipe(connect.reload());
+});
+
+gulp.task('fonts', ['Iconfont']);
+
+gulp.task('default', ['compass', 'connect', 'watch']);
