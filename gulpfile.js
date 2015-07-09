@@ -33,7 +33,7 @@ gulp.task('compass', function() {
  */
 gulp.task('js', function(){
     return gulp.src('app/assets/js/*.js')
-        .pipe(concat('main.min.js'))
+        .pipe(concat('main.js'))
         .pipe(uglify())
         .pipe(gulp.dest('site/js'))
         .pipe(browserSync.reload({stream:true}));

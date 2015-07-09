@@ -24,7 +24,7 @@ $ bower install
 
 ## Usage 
 
-The gulpfile in this project is setup to run `compass` and to watch the scss file for changes. 
+The gulpfile in this project is setup to run `compass` and to watch the scss / js files for changes. 
 Use the `gulp` command to start the process. 
 
 ~~~
