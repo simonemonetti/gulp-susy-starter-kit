@@ -14,3 +14,7 @@ node_modules
 
 #ignore bower_components
 bower_components
+app/assets/vendor
+site
+
+app/assets/css
