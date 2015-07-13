@@ -2,7 +2,7 @@
   "name": "gulp-susy-starter-kit",
   "version": "0.1",
   "authors": [
-    "Simone Monetti <simone.monetti@gmail.com>"  
+    "Simone Monetti <simone.monetti@gmail.com>"
   ],
   "license": "MIT",
   "ignore": [
@@ -13,8 +13,8 @@
     "tests"
   ],
   "dependencies": {
-    "susy": "~2.2.2"
+    "susy": "~2.2.2",
+    "jquery": "~2.1.4"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

@@ -1,14 +1,16 @@
 var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     compass = require('gulp-compass'),
+    usemin = require('gulp-usemin'),
+    rev = require('gulp-rev'),
     minifyCSS = require('gulp-minify-css'),
     sourcemaps = require('gulp-sourcemaps'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-    uglify = require('gulp-uglify'),
-    iconfont = require('gulp-iconfont'),
-    iconfontCss = require('gulp-iconfont-css'),
-    consolidate = require('gulp-consolidate');
+    uglify = require('gulp-uglify');
+    // iconfont = require('gulp-iconfont'),
+    // iconfontCss = require('gulp-iconfont-css'),
+    // consolidate = require('gulp-consolidate');
 
 // Compass (with Sourcemaps and CSS Minifier)
 gulp.task('compass', function() {
@@ -28,23 +30,33 @@ gulp.task('compass', function() {
     .pipe(gulp.dest('./site/css'));
 });
 
+gulp.task('usemin', function () {
+  return gulp.src('app/*.html')
+      .pipe(usemin({
+        css: [minifyCSS(), 'concat'],
+        //html: [minifyHtml({empty: true})],
+        js: [uglify(), rev()]
+      }))
+      .pipe(gulp.dest('site'));
+});
+
 /**
 * Compile files from assets/js into site/js (for live injecting)
  */
-gulp.task('js', function(){
-    return gulp.src('app/assets/js/*.js')
-        .pipe(concat('main.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('site/js'))
-        .pipe(browserSync.reload({stream:true}));
-});
+// gulp.task('js', function(){
+//     return gulp.src('app/assets/js/*.js')
+//         .pipe(concat('main.js'))
+//         .pipe(uglify())
+//         .pipe(gulp.dest('site/js'))
+//         .pipe(browserSync.reload({stream:true}));
+// });
 
 /**
 * Compile files from assets/vendor into site/js, site/css ecc (for live injecting)
  */
 gulp.task('js:vendor', function(){
     return gulp.src([
-            'app/assets/vendor/cookies-enabler/cookies-enabler.min.js'
+            //'app/assets/vendor/cookies-enabler/cookies-enabler.min.js'
         ])
         .pipe(concat('vendor.min.js'))
         .pipe(uglify())
@@ -109,7 +121,7 @@ gulp.task('watch', function() {
  * COMMAND-LINE TASKS
  */
 
-gulp.task('default', ['html', 'js', 'js:vendor', 'compass', 'img', 'browser-sync', 'watch']); //Default task, running just `gulp` will compile the assets and compile the site
-gulp.task('fonts', ['Iconfont']);
+gulp.task('default', ['html', 'js', 'js:vendor', 'compass', 'img', 'usemin', 'browser-sync', 'watch']); //Default task, running just `gulp` will compile the assets and compile the site
+// gulp.task('fonts', ['Iconfont']);
 
 //gulp.task('default', ['compass', 'connect', 'watch']);
