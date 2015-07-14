@@ -15,6 +15,11 @@ git clone https://github.com/simonemonetti/gulp-susy-starter-kit.git
 gem install compass
 ~~~
 
+2b) If you have trouble with step 2, use the force by typing
+~~~
+sudo gem install compass
+~~~
+
 3) Install Node dependencies 
 
 ~~~
