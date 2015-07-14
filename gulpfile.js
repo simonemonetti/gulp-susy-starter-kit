@@ -42,7 +42,7 @@ gulp.task('usemin', function () {
 
 /**
 * Compile files from assets/js into site/js (for live injecting)
- */
+**/
 gulp.task('js', function(){
     return gulp.src('app/assets/js/*.js')
         .pipe(concat('main.js'))
@@ -51,9 +51,9 @@ gulp.task('js', function(){
         .pipe(browserSync.reload({stream:true}));
 });
 
-/**
-* Compile files from assets/vendor into site/js, site/css ecc (for live injecting)
- */
+/*
+* Compile files from assets/vendor into site/js, site/css ecc (for live injecting) 
+*/
 gulp.task('js:vendor', function(){
     return gulp.src([
             //'app/assets/vendor/cookies-enabler/cookies-enabler.min.js'
@@ -66,10 +66,10 @@ gulp.task('js:vendor', function(){
 
 /**
  * Copy files from assets/img into site/img (for live injecting)
- */
+**/
 gulp.task('img', function() {
-    return gulp.src(['app/assets/img/*'])
-        .pipe(gulp.dest('site/img'))
+    return gulp.src(['app/assets/images/*'])
+        .pipe(gulp.dest('site/images'))
         .pipe(browserSync.reload({stream:true}));
 });
 
@@ -108,8 +108,19 @@ gulp.task('browser-sync', function() {
         }
     });
 });
+gulp.task('browser-sync-dev', function() {
+    browserSync({
+        server: {
+            baseDir: 'app'
+        }
+    });
+});
 
-gulp.task('watchAssets', function() {
+gulp.task('watch-dev', function() {
+  gulp.watch(['app/assets/scss/*.scss', 'app/assets/scss/**/*.scss'], ['compass']);
+});
+
+gulp.task('watch-build', function() {
   gulp.watch(['app/assets/icons/*.svg'], ['Iconfont']);
   gulp.watch(['app/assets/scss/*.scss', 'app/assets/scss/**/*.scss'], ['compass']);
   gulp.watch(['app/assets/js/*.js', 'app/assets/js/**/*.js'], ['js']);
@@ -121,6 +132,8 @@ gulp.task('watchAssets', function() {
  * COMMAND-LINE TASKS
  */
 
-gulp.task('default', ['html', 'js', 'js:vendor', 'compass', 'img', 'usemin', 'browser-sync']); //Default task, running just `gulp` will compile the assets and compile the site
-gulp.task('watch', ['html', 'js', 'js:vendor', 'compass', 'img', 'usemin', 'browser-sync', 'watchAssets']);
+gulp.task('default', ['compass', 'browser-sync-dev', 'watch-dev']); //Default task, running just `gulp` will compile the assets and compile the site
+gulp.task('watch', ['compass', 'browser-sync-dev', 'watch-dev']);
+//gulp.task('build', ['html', 'compass', 'img', 'usemin', 'browser-sync']);
+
 // gulp.task('fonts', ['Iconfont']);
