@@ -4,19 +4,24 @@ Starter kit with: Gulp.js / Susy / Compass / svg-to-font (iconfont)
 
 ## Project Setup  
 
-1. Clone the repo 
+1) Clone the repo 
 
 ~~~
 git clone https://github.com/simonemonetti/gulp-susy-starter-kit.git
 ~~~
 
-2. Install Node dependencies 
+2) Install "compass" gem
+~~~
+gem install compass
+~~~
+
+3) Install Node dependencies 
 
 ~~~
 $ npm install
 ~~~
 
-3. Install Bower dependencies
+4) Install Bower dependencies
 
 ~~~
 $ bower install
@@ -25,10 +30,10 @@ $ bower install
 ## Usage 
 
 The gulpfile in this project is setup to run `compass` and to watch the scss / js files for changes. 
-Use the `gulp` command to start the process. 
+Use the `gulp watch` command to start the process. 
 
 ~~~
-$ gulp
+$ gulp watch
 ~~~
 
 ## Create font from .svg icons / based on [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont)
