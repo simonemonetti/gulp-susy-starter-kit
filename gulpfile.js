@@ -43,13 +43,13 @@ gulp.task('usemin', function () {
 /**
 * Compile files from assets/js into site/js (for live injecting)
  */
-// gulp.task('js', function(){
-//     return gulp.src('app/assets/js/*.js')
-//         .pipe(concat('main.js'))
-//         .pipe(uglify())
-//         .pipe(gulp.dest('site/js'))
-//         .pipe(browserSync.reload({stream:true}));
-// });
+gulp.task('js', function(){
+    return gulp.src('app/assets/js/*.js')
+        .pipe(concat('main.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('site/js'))
+        .pipe(browserSync.reload({stream:true}));
+});
 
 /**
 * Compile files from assets/vendor into site/js, site/css ecc (for live injecting)
@@ -109,7 +109,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('watch', function() {
+gulp.task('watchAssets', function() {
   gulp.watch(['app/assets/icons/*.svg'], ['Iconfont']);
   gulp.watch(['app/assets/scss/*.scss', 'app/assets/scss/**/*.scss'], ['compass']);
   gulp.watch(['app/assets/js/*.js', 'app/assets/js/**/*.js'], ['js']);
@@ -121,7 +121,6 @@ gulp.task('watch', function() {
  * COMMAND-LINE TASKS
  */
 
-gulp.task('default', ['html', 'js', 'js:vendor', 'compass', 'img', 'usemin', 'browser-sync', 'watch']); //Default task, running just `gulp` will compile the assets and compile the site
+gulp.task('default', ['html', 'js', 'js:vendor', 'compass', 'img', 'usemin', 'browser-sync']); //Default task, running just `gulp` will compile the assets and compile the site
+gulp.task('watch', ['html', 'js', 'js:vendor', 'compass', 'img', 'usemin', 'browser-sync', 'watchAssets']);
 // gulp.task('fonts', ['Iconfont']);
-
-//gulp.task('default', ['compass', 'connect', 'watch']);
